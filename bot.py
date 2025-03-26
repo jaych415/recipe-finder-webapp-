@@ -5,6 +5,19 @@ from discord.ext import commands
 from dotenv import load_dotenv
 import discord
 
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "JayBot is alive! 🚀"
+
+def run_web_server():
+    app.run(host='0.0.0.0', port=8080)
+
+
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
