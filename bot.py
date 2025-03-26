@@ -4,10 +4,10 @@ import aiohttp
 from discord.ext import commands
 from dotenv import load_dotenv
 import discord
-
 from flask import Flask
 from threading import Thread
 
+# Flask web server setup
 app = Flask('')
 
 @app.route('/')
@@ -17,13 +17,13 @@ def home():
 def run_web_server():
     app.run(host='0.0.0.0', port=8080)
 
-
+# Load bot token from .env
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 
+# Bot setup
 intents = discord.Intents.default()
 intents.message_content = True
-
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 @bot.event
@@ -80,8 +80,6 @@ async def menu(ctx):
 """
     await ctx.send(commands_list)
 
-    import aiohttp
-
 @bot.command()
 async def meme(ctx):
     async with aiohttp.ClientSession() as session:
@@ -106,30 +104,21 @@ async def physics(ctx):
         "Black holes can warp space and time so much, time almost stops near them. 🕳️",
         "Your mass doesn’t change in space — your *weight* does. 🧑‍🚀",
         "If the sun were replaced with a black hole of the same mass, Earth would keep orbiting normally — but it'd be *very* dark. ☀️➡️🕳️",
-        "Light's speed is constant.",
-        "Gravity attracts mass.",
         "Energy is always conserved.",
-        "Atoms have nuclei.",
         "Quantum rules small things.",
-        "Relativity bends space-time.",
-        "Forces cause motion.",
         "Electrics and magnets link.",
         "Heat is energy flow.",
         "Sound is a wave.",
-        "Light is wave and particle.",
         "Nuclei hold protons, neutrons.",
         "Dark matter is unseen.",
         "Stars fuse atoms.",
-        "Particles obey the Standard Model.",
         "Entropy increases disorder.",
-        "Acoustics studies sound.",
-        "Some materials lose resistance.",
-        "The strong force binds nuclei.",
         "The weak force decays atoms.",
-        "Physics describes the universe.",
+        "Physics describes the universe."
     ]
     await ctx.send(random.choice(facts))
 
-
-
-bot.run(TOKEN)
+# Start Flask + Bot
+if __name__ == "__main__":
+    Thread(target=run_web_server).start()
+    bot.run(TOKEN)
