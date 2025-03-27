@@ -15,6 +15,10 @@ app = Flask('')
 def home():
     return "JayBot is alive! 🚀"
 
+@app.route('/ping')
+def ping():
+    return "pong", 200
+
 def run_web_server():
     app.run(host='0.0.0.0', port=8080)
 
