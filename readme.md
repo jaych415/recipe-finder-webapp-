@@ -7,3 +7,4 @@ Built with Python, Streamlit, and the Spoonacular API.
 
 ```bash
 streamlit run app.py
+<!-- Added a test line for YOLO badge -->
