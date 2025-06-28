@@ -1,7 +1,7 @@
 # 🍽️ Recipe Finder Bot
 
 A fun Streamlit app that finds recipes based on ingredients you enter!  
-Built with Python, Streamlit, and the Spoonacular API.
+Built with Python, Streamlit, and the Spoonacular API. Very helpful for finding new recipeies! 
 
 ## Run locally
 
